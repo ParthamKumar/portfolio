@@ -30,7 +30,7 @@ function initSpotlight() {
             category: "Application",
             desc: "A global social media platform connecting creators with seamless multi-network sharing.",
             tech: "Android • Java • Firebase",
-            img: "spreadlink.png",
+            img: "images/spreadlink.png",
             link: "spreadlink.html"
         },
         {
@@ -38,7 +38,7 @@ function initSpotlight() {
             category: "Application",
             desc: "Advanced AI Assistant featuring coding, real-time voice, and image generation.",
             tech: "Android • Kotlin • Generative AI",
-            img: "ominos.png",
+            img: "images/ominos.png",
             link: "ominos.html"
         },
         {
@@ -46,7 +46,7 @@ function initSpotlight() {
             category: "Website",
             desc: "Minimalist music player with clean controls and modern design.",
             tech: "Web • Java • JS",
-            img: "music-player.png",
+            img: "images/music-player.png",
             link: "web.html"
         },
         {
@@ -54,7 +54,7 @@ function initSpotlight() {
             category: "3D Design",
             desc: "Highly detailed Formula 1 racing car model featuring authentic aerodynamics and materials.",
             tech: "Blender • 3D Modeling • Texturing",
-            img: "car1.jpg",
+            img: "images/car1.jpg",
             link: "3dmodels.html"
         },
         {
@@ -62,7 +62,7 @@ function initSpotlight() {
             category: "Web Development",
             desc: "A responsive streaming UI mirroring Netflix’s browsing experience with pixel-perfect design.",
             tech: "HTML • CSS • JavaScript",
-            img: "netflix.png",
+            img: "images/netflix.png",
             link: "web.html"
         },
         {
@@ -70,7 +70,7 @@ function initSpotlight() {
             category: "Game Development",
             desc: "An engaging mobile car racing game featuring realistic physics and 3D environments.",
             tech: "Unity • C# • Mobile",
-            img: "carimg1.png",
+            img: "images/carimg1.png",
             link: "games.html"
         }
     ];
@@ -279,10 +279,8 @@ function initHeroTyping() {
     if (!tagline) return;
 
     const roles = [
-        "Developer & Designer",
-        "AI explorer",
-        "Full Stack Developer",
-        "UI/UX Designer"
+        "AI Engineer",
+        "Full Stack Developer",     
         
     ];
 

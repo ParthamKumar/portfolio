@@ -9,25 +9,25 @@
     <link rel="canonical" href="https://roycenoel.space/">
 
     <meta name="description"
-        content="Explore the portfolio of Royce Gonsalves, skilled developer & designer. Projects in web, Android, AI, animation, graphics design, and more.">
+        content="Explore the portfolio of Partham Kumar, skilled developer & designer. Projects in web, Android, AI, animation, graphics design, and more.">
     <meta name="keywords"
         content="Portfolio, Developer, Designer, Web Development, Android, AI, Animation, Projects, Graphics Design">
-    <meta name="author" content="Royce Gonsalves">
+    <meta name="author" content="Partham Kumar">
 
-    <link rel="icon" type="image/png" href="portfolioIcon.png">
+    <link rel="icon" type="image/png" href="images/portfolioIcon.png">
 
-    <meta property="og:title" content="Portfolio Website - Royce Gonsalves">
+    <meta property="og:title" content="Portfolio Website - Partham Kumar">
     <meta property="og:description" content="Showcase of web, Android, AI tools, and creative projects.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://roycenoel.space/">
-    <meta property="og:image" content="https://roycenoel.space/portfolioIcon.png">
+    <meta property="og:image" content="https://roycenoel.space/images/portfolioIcon.png">
 
     <script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.19/build/spline-viewer.js"></script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org/",
       "@type": "Person",
-      "name": "Royce Gonsalves",
+      "name": "Partham Kumar",
       "url": "https://roycenoel.space/",
       "jobTitle": "Developer & Designer",
       "sameAs": [
@@ -61,127 +61,6 @@
             margin-right: auto;
         }
 
-        /* Tree Structure */
-        .founder-tree {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .founder-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--text-white);
-            background: rgba(255, 255, 255, 0.03);
-            padding: 0.6rem 1.2rem;
-            border-radius: 100px;
-            border: 1px solid var(--border-color);
-            z-index: 2;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-
-        .founder-tree:hover .founder-label {
-            border-color: var(--text-white);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .trunk {
-            width: 1px;
-            height: 30px;
-            background: var(--border-color);
-            position: relative;
-            transition: background 0.3s, box-shadow 0.3s;
-        }
-
-        .branches {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            gap: 2rem;
-            position: relative;
-        }
-
-        .branch {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            padding-top: 20px;
-            flex: 1;
-        }
-
-        /* Horizontal Lines */
-        .branch::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            height: 1px;
-            background: var(--border-color);
-            width: 50%;
-            transition: background 0.3s, box-shadow 0.3s;
-        }
-
-        .branch:first-child::before { right: 0; }
-        .branch:last-child::before { left: 0; }
-
-        /* Vertical Lines to Buttons */
-        .branch::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            height: 20px;
-            width: 1px;
-            background: var(--border-color);
-            left: 50%;
-            transform: translateX(-50%);
-            transition: background 0.3s, box-shadow 0.3s;
-        }
-
-        /* Button Styling */
-        .project-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 12px 24px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            color: var(--text-gray);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            min-width: 140px;
-            animation: fadeIn 0.5s ease-out backwards;
-        }
-
-        .branch:first-child .project-btn { animation-delay: 0.2s; }
-        .branch:last-child .project-btn { animation-delay: 0.3s; }
-
-        /* Hover Effects - Light up the path */
-        .project-btn:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--text-white);
-            color: var(--text-white);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        /* Light up lines on hover */
-        .branch:hover::before,
-        .branch:hover::after {
-            background: var(--text-white);
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-        }
-
-        .founder-tree:hover .trunk {
-             background: var(--text-white);
-             box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
-        }
     </style>
     
 </head>
@@ -211,39 +90,16 @@
     <section class="hero" id="home">
         <div class="hero-container">
             <div class="hero-content">
-                <span class="hero-tagline">Developer & Designer</span>
+                <span class="hero-tagline">AI Engineer</span>
                 <h1 class="hero-title">
                     Hello, I'm<br>
-                    Royce Gonsalves
+                    Partham Kumar
                 </h1>
                 <div class="profile-section">
                     <!-- Main Bio Text -->
                     <p class="bio-text">
-                      Crafting exceptional digital experiences through innovative design and cutting-edge development.
+                      AI Engineer and Full-Stack Developer passionate about building intelligent solutions that solve real-world problems.
                     </p>
-                  
-                    <!-- Branch Design Section -->
-                    <div class="founder-tree">
-                      <span class="founder-label">Founder of</span>
-                      
-                      <div class="trunk"></div>
-                      
-                      <div class="branches">
-                        <!-- Left Branch: Spreadlink -->
-                        <div class="branch">
-                          <a href="./spreadlink.html" target="_blank" class="project-btn">
-                            Spreadlink
-                          </a>
-                        </div>
-                  
-                        <!-- Right Branch: Griddraft.pro -->
-                        <div class="branch">
-                          <a href="https://griddraft.pro/" target="_blank" class="project-btn">
-                            Griddraft.pro
-                          </a>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 <div class="hero-buttons">
                     <button class="btn-primary" onclick="window.location.href='#projects'">View My Work</button>
@@ -274,7 +130,7 @@
             <div class="projects-grid">
                 <div class="project-card" data-category="applications">
                     <div class="project-image">
-                        <img class="project-icon" src="spreadlink.png" alt="App icon">
+                        <img class="project-icon" src="images/spreadlink.png" alt="App icon">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Spreadlink</h3>
@@ -296,7 +152,7 @@
 
                 <div class="project-card" data-category="applications">
                     <div class="project-image">
-                        <img class="project-icon" src="ominos.png" alt="Ominos App icon">
+                        <img class="project-icon" src="images/ominos.png" alt="Ominos App icon">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Ominos</h3>
@@ -317,7 +173,7 @@
 
                 <div class="project-card" data-category="websites">
                     <div class="project-image">
-                        <img class="project-icon" src="./musicplayer.png" alt="App icon">
+                        <img class="project-icon" src="./images/musicplayer.png" alt="App icon">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Websites</h3>
@@ -336,7 +192,7 @@
 
                 <div class="project-card" data-category="Programs">
                     <div class="project-image">
-                        <img class="project-icon" src="programs.jpg" alt="App icon">
+                        <img class="project-icon" src="images/programs.jpg" alt="App icon">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Programs</h3>
@@ -357,7 +213,7 @@
 
                 <div class="project-card" data-category="games">
                     <div class="project-image">
-                        <img class="project-icon" src="carimg2.jpg" alt="App icon">
+                        <img class="project-icon" src="images/carimg2.jpg" alt="App icon">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Games</h3>
@@ -378,7 +234,7 @@
 
                 <div class="project-card" data-category="models3d">
                     <div class="project-image">
-                        <img class="project-icon" src="car3.jpg" alt="App icon">
+                        <img class="project-icon" src="images/car3.jpg" alt="App icon">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">3D Models</h3>
@@ -400,7 +256,7 @@
 
                 <div class="project-card" data-category="graphics">
                     <div class="project-image">
-                        <img class="project-icon" src="graphic.png" alt="App icon">
+                        <img class="project-icon" src="images/graphic.png" alt="App icon">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">UI/UX Design</h3>
@@ -425,7 +281,7 @@
         <div class="container">
             <div class="spotlight-wrapper">
                 <div class="spotlight-visual">
-                    <img id="spotlight-img" src="spreadlink.png" alt="Project Preview">
+                    <img id="spotlight-img" src="images/spreadlink.png" alt="Project Preview">
                 </div>
                 <div class="spotlight-info">
                     <span class="spotlight-tag" id="spotlight-cat">Featured Work</span>
@@ -512,77 +368,77 @@
 
             <div class="skills-grid">
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./js.png" alt="JavaScript">
+                    <img class="skill-icon-img" src="./images/js.png" alt="JavaScript">
                     <span class="skill-name">JavaScript</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./physics.png" alt="React">
+                    <img class="skill-icon-img" src="./images/physics.png" alt="React">
                     <span class="skill-name">React</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./node-js.png" alt="Node.js">
+                    <img class="skill-icon-img" src="./images/node-js.png" alt="Node.js">
                     <span class="skill-name">Node.js</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./java.png" alt="Java">
+                    <img class="skill-icon-img" src="./images/java.png" alt="Java">
                     <span class="skill-name">Java</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./mysql-database.png" alt="MySQL">
+                    <img class="skill-icon-img" src="./images/mysql-database.png" alt="MySQL">
                     <span class="skill-name">MySQL</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./python.png" alt="Python">
+                    <img class="skill-icon-img" src="./images/python.png" alt="Python">
                     <span class="skill-name">Python</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./artificial-intelligence.png" alt="AI">
+                    <img class="skill-icon-img" src="./images/artificial-intelligence.png" alt="AI">
                     <span class="skill-name">AI Prompt</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./text.png" alt="CSS">
+                    <img class="skill-icon-img" src="./images/text.png" alt="CSS">
                     <span class="skill-name">CSS</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./designer (1).png" alt="UI/UX">
+                    <img class="skill-icon-img" src="./images/designer (1).png" alt="UI/UX">
                     <span class="skill-name">UI/UX</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./seo.png" alt="SEO">
+                    <img class="skill-icon-img" src="./images/seo.png" alt="SEO">
                     <span class="skill-name">SEO</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./app-development.png" alt="Mobile">
+                    <img class="skill-icon-img" src="./images/app-development.png" alt="Mobile">
                     <span class="skill-name">App Dev</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./coding (1).png" alt="Full Stack">
+                    <img class="skill-icon-img" src="./images/coding (1).png" alt="Full Stack">
                     <span class="skill-name">Full-Stack</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./publicity.png" alt="Social Media">
+                    <img class="skill-icon-img" src="./images/publicity.png" alt="Social Media">
                     <span class="skill-name">Social Media</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./cube.png" alt="3D">
+                    <img class="skill-icon-img" src="./images/cube.png" alt="3D">
                     <span class="skill-name">3D Models</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./layers.png" alt="Graphics">
+                    <img class="skill-icon-img" src="./images/layers.png" alt="Graphics">
                     <span class="skill-name">Graphic Design</span>
                 </div>
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./unity.png" alt="Unity">
+                    <img class="skill-icon-img" src="./images/unity.png" alt="Unity">
                     <span class="skill-name">Unity</span>
                 </div>
                 
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./git.png" alt="Git">
+                    <img class="skill-icon-img" src="./images/git.png" alt="Git">
                     <span class="skill-name">Git</span>
                 </div>
             
                 <div class="skill-item">
-                    <img class="skill-icon-img" src="./figma.png" alt="Figma">
+                    <img class="skill-icon-img" src="./images/figma.png" alt="Figma">
                     <span class="skill-name">Figma</span>
                 </div>
             </div>
@@ -643,7 +499,7 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2025 Royce Gonsalves. All rights reserved.</p>
+                <p>&copy; 2025 Partham Kumar. All rights reserved.</p>
             </div>
         </div>
     </footer>
