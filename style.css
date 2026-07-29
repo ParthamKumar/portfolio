@@ -692,52 +692,93 @@ spline-viewer {
   padding: var(--space-24) 0;
 }
 
-.contact-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 4rem;
+.contact-links {
+  display: flex;
+  justify-content: center;
 }
 
-.contact-icon {
-  width: 50px;
-  height: 50px;
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.85rem;
+  width: min(100%, 1240px);
+}
+
+.contact-cards > .contact-item {
+  display: none;
+}
+
+.contact-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-}
-
-.contact-details h4 {
-  color: var(--text-gray);
-  font-size: 0.9rem;
-  margin-bottom: 0.2rem;
-}
-
-.contact-details a {
-  color: var(--text-white);
-  font-size: 1.1rem;
-  text-decoration: none;
-}
-
-.social-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.2rem;
+  min-height: 160px;
+  padding: 1.25rem 0.85rem;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  border-radius: var(--radius-pill);
-  text-decoration: none;
+  border-radius: var(--radius-lg);
   color: var(--text-white);
-  transition: all 0.2s;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.social-link:hover {
-  background: var(--text-white);
-  color: var(--bg-dark);
+.contact-card:hover {
+  border-color: var(--text-white);
+  transform: translateY(-5px);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.35);
+}
+
+.contact-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.gmail-logo {
+  background: linear-gradient(135deg, #ea4335, #fbbc05);
+}
+
+.linkedin-logo {
+  background: #0a66c2;
+  font-size: 1.15rem;
+}
+
+.github-logo {
+  background: #24292f;
+}
+
+.whatsapp-logo {
+  background: #25d366;
+}
+
+.instagram-logo {
+  background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4);
+}
+
+.contact-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.contact-value {
+  display: block;
+  max-width: 100%;
+  color: var(--text-gray);
+  font-size: 0.82rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
 }
 
 .contact-form-container {
@@ -910,6 +951,12 @@ spline-viewer {
     border-radius: 4px;
 }
 
+@media (max-width: 1100px) {
+  .contact-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero-container {
@@ -945,6 +992,10 @@ spline-viewer {
   }
 
   .skills-groups {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-cards {
     grid-template-columns: 1fr;
   }
 
