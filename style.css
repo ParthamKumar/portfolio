@@ -527,6 +527,12 @@ spline-viewer {
   transition: transform 0.5s ease;
 }
 
+.project-spline-preview spline-viewer {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
 .project-card:hover .project-image img {
   transform: scale(1.05);
 }

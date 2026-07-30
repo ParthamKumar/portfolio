@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Games Portfolio - Partham Kumar</title>
+  <link rel="canonical" href="https://roycenoel.space/games.html" />
+  <link rel="icon" type="image/png" href="images/portfolioIcon.png" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* Dark Theme Modal Overrides */
+    .video-modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-modal-content {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: var(--space-8);
+      max-width: 90vw;
+      width: 800px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .video-modal-header {
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .video-modal-header h3 {
+        color: var(--text-white);
+        font-size: 1.5rem;
+    }
+
+    .close-button {
+      background: none;
+      border: none;
+      color: var(--text-gray);
+      cursor: pointer;
+    }
+    
+    .close-button:hover {
+        color: var(--text-white);
+    }
+    
+    /* Tags inside cards */
+    .game-tags .tag {
+        background: rgba(0,0,0,0.6);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: var(--text-white);
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+    }
+    
+    .project-video-wrapper {
+        position: relative;
+        height: 220px;
+    }
+    
+    .video-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s;
+    }
+    
+    .video-overlay:hover {
+        background: rgba(0,0,0,0.2);
+    }
+    
+    .play-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(255,255,255,0.2);
+        backdrop-filter: blur(5px);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid white;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <span class="logo-text">Portfolio</span>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html#home" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="index.html#projects" class="nav-link">Projects</a></li>
+        <li class="nav-item"><a href="games.html" class="nav-link active" style="color: var(--text-white);">Games</a></li>
+        <li class="nav-item"><a href="index.html#skills" class="nav-link">Skills</a></li>
+        <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-resume" onclick="window.open('https://drive.google.com/file/d/1pVW5ryvmPn5h9yOMW7DgkHSV0Aw_SXBy/view?usp=sharing', '_blank')">Resume</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" id="games-hero">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span class="hero-tagline">Interactive</span><br>
+          Game Collection
+        </h1>
+        <p class="hero-description">Explore my collection of engaging mobile games with innovative gameplay mechanics.</p>
+        <div class="hero-buttons">
+          <button class="btn-primary" onclick="document.getElementById('games-projects').scrollIntoView({behavior: 'smooth'})">View Games</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects" id="games-projects">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Game Portfolio</h2>
+        <p class="section-subtitle">Interactive games with immersive gameplay</p>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-video-wrapper" onclick="openVideoPlayer('ScCLqWuMwWE', 'Car Racing Game')" style="cursor: pointer;">
+            <div style="background-image: url('images/carimg1.png'); background-size: cover; height: 100%; width: 100%;"></div>
+            <div class="video-overlay">
+                <div class="play-icon">▶</div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Car Racing Game</h3>
+            <p class="project-description">An engaging car racing game featuring realistic physics.</p>
+            <div class="game-tags" style="margin-bottom: 1rem; display: flex; gap: 5px;">
+                <span class="tag">Racing</span><span class="tag">3D</span><span class="tag">Mobile</span>
+            </div>
+            <button class="btn-outline" onclick="openVideoPlayer('ScCLqWuMwWE', 'Car Racing Game')">Play Demo</button>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-video-wrapper" onclick="openVideoPlayer('60-Uxb_QSXM', 'Action Adventure Game')" style="cursor: pointer;">
+            <div style="background-image: url('images/cartoon2.png'); background-size: cover; height: 100%; width: 100%;"></div>
+            <div class="video-overlay">
+                <div class="play-icon">▶</div>
+            </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Action Adventure</h3>
+            <p class="project-description">An immersive action-adventure game with rich storytelling.</p>
+            <div class="game-tags" style="margin-bottom: 1rem; display: flex; gap: 5px;">
+                <span class="tag">Adventure</span><span class="tag">RPG</span>
+            </div>
+            <button class="btn-outline" onclick="openVideoPlayer('60-Uxb_QSXM', 'Action Adventure Game')">Play Demo</button>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-video-wrapper" onclick="openVideoPlayer('49ygaqmF0WU', 'Puzzle Strategy Game')" style="cursor: pointer;">
+             <div style="background-image: url('images/anime2.png'); background-size: cover; height: 100%; width: 100%;"></div>
+             <div class="video-overlay">
+                <div class="play-icon">▶</div>
+             </div>
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Puzzle Strategy</h3>
+            <p class="project-description">A mind-bending puzzle strategy game.</p>
+            <div class="game-tags" style="margin-bottom: 1rem; display: flex; gap: 5px;">
+                <span class="tag">Puzzle</span><span class="tag">Strategy</span>
+            </div>
+            <button class="btn-outline" onclick="openVideoPlayer('49ygaqmF0WU', 'Puzzle Strategy Game')">Play Demo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="videoModal" class="video-modal">
+    <div class="video-modal-content">
+      <div class="video-modal-header">
+        <h3 id="modalGameTitle">Game Demo</h3>
+        <button class="close-button" onclick="closeVideoPlayer()">✕</button>
+      </div>
+      <div class="video-player-wrapper">
+        <iframe id="modalVideo" width="100%" height="400" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 1rem;">
+        <button class="btn-secondary" onclick="closeVideoPlayer()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Partham Kumar. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function openVideoPlayer(videoId, title) {
+      document.getElementById('modalGameTitle').innerText = title;
+      document.getElementById('modalVideo').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      document.getElementById('videoModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoPlayer() {
+      document.getElementById('modalVideo').src = '';
+      document.getElementById('videoModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+  </script>
+</body>
+</html>

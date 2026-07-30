@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>3D Models Portfolio - Partham Kumar</title>
+  <link rel="canonical" href="https://roycenoel.space/3dmodels.html">
+  <link rel="icon" type="image/png" href="images/portfolioIcon.png">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* Dark Theme Overrides for 3D Models Page */
+    
+    .models-section {
+        padding: var(--space-24) 0;
+        /* Background handled by body/main style.css */
+    }
+
+    /* Card Styling */
+    .model-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .model-card:hover {
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .model-title {
+        color: var(--text-white);
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .project-description {
+        color: var(--text-gray);
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Carousel / Image Wrapper */
+    .project-images-wrapper {
+        position: relative;
+        height: 240px;
+        background: #000;
+        overflow: hidden;
+    }
+
+    .project-image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .project-image.active {
+        opacity: 1;
+    }
+
+    /* Overlay on hover */
+    .image-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 1.5rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 5;
+    }
+
+    .model-card:hover .image-overlay {
+        opacity: 1;
+    }
+
+    /* Tags */
+    .model-tags {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .tag {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: var(--text-white);
+    }
+
+    /* View Button (Icon) */
+    .view-button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .view-button:hover {
+        background: var(--text-white);
+        border-color: var(--text-white);
+    }
+    
+    .view-button:hover svg path {
+        stroke: var(--bg-dark);
+    }
+
+    /* Project Content */
+    .project-content {
+        padding: 1.5rem;
+    }
+
+    .project-features ul {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 1.5rem;
+    }
+
+    .project-features li {
+        color: var(--text-gray);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        padding-left: 1.2rem;
+        position: relative;
+    }
+
+    .project-features li::before {
+        content: "•";
+        color: var(--text-white);
+        position: absolute;
+        left: 0;
+    }
+
+    /* Carousel Controls */
+    .carousel-prev, .carousel-next {
+        background: rgba(0,0,0,0.5);
+        border: none;
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+
+    .project-images-wrapper:hover .carousel-prev,
+    .project-images-wrapper:hover .carousel-next {
+        opacity: 1;
+    }
+
+    .carousel-prev { left: 10px; }
+    .carousel-next { right: 10px; }
+
+    .carousel-dots {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 6px;
+        z-index: 10;
+    }
+
+    .dot {
+        width: 6px;
+        height: 6px;
+        background: rgba(255,255,255,0.3);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .dot.active {
+        background: var(--text-white);
+    }
+
+    /* Stats Section */
+    .model-stats {
+        background: var(--bg-dark); /* Ensure dark background */
+        border-top: 1px solid var(--border-color);
+        padding: 4rem 0;
+    }
+
+    .stat-item {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        padding: 2rem;
+        border-radius: var(--radius-lg);
+        text-align: center;
+        transition: transform 0.2s;
+    }
+    
+    .stat-item:hover {
+        border-color: var(--text-gray);
+        transform: translateY(-5px);
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-white);
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        color: var(--text-gray);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    /* Modal Styling */
+    .image-modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        inset: 0;
+        background: rgba(0,0,0,0.95);
+        backdrop-filter: blur(5px);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .image-modal-content {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-lg);
+        width: 90%;
+        max-width: 1000px;
+        max-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        position: relative;
+    }
+
+    .image-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 1rem;
+    }
+
+    .image-modal-header h3 {
+        color: var(--text-white);
+        margin: 0;
+    }
+
+    .image-counter {
+        background: rgba(255,255,255,0.1);
+        padding: 4px 10px;
+        border-radius: 4px;
+        color: var(--text-gray);
+        font-size: 0.9rem;
+    }
+
+    .close-button {
+        background: none;
+        border: none;
+        color: var(--text-gray);
+        cursor: pointer;
+        font-size: 1.2rem;
+    }
+    
+    .close-button:hover {
+        color: var(--text-white);
+    }
+
+    .image-viewer-wrapper {
+        flex: 1;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 1rem;
+    }
+
+    .image-viewer-wrapper img {
+        max-width: 100%;
+        max-height: 60vh;
+        object-fit: contain;
+    }
+    
+    .gallery-prev, .gallery-next {
+        position: absolute;
+        background: rgba(0,0,0,0.5);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+    }
+    
+    .gallery-prev { left: 10px; }
+    .gallery-next { right: 10px; }
+    
+    .gallery-prev:hover, .gallery-next:hover {
+        background: var(--text-white);
+        color: var(--bg-dark);
+    }
+
+    .image-title {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.7);
+        padding: 5px 15px;
+        border-radius: 20px;
+        color: white;
+        font-size: 0.9rem;
+    }
+
+    .image-modal-controls {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+
+  </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Portfolio</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="games.html" class="nav-link">Games</a></li>
+                <li class="nav-item"><a href="3dmodels.html" class="nav-link active" style="color: var(--text-white);">3D Models</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="btn-resume" onclick="window.open('https://drive.google.com/file/d/1pVW5ryvmPn5h9yOMW7DgkHSV0Aw_SXBy/view?usp=sharing', '_blank')">Resume</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="models-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-tagline">Precision & Creativity</span>
+                <h1 class="hero-title">Professional<br>3D Model Gallery</h1>
+                <p class="hero-description">Explore my collection of detailed 3D models showcasing advanced modeling techniques, realistic textures, and creative design solutions.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="document.getElementById('models-projects').scrollIntoView({behavior: 'smooth'})">View Models</button>
+                    <button class="btn-secondary" onclick="window.location.href='index.html#contact'">Get In Touch</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects models-section" id="models-projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">3D Model Portfolio</h2>
+                <p class="section-subtitle">Professional 3D visualizations and modeling projects</p>
+            </div>
+
+            <div class="projects-grid">
+                
+                <div class="project-card model-card">
+                    <div class="project-images-wrapper">
+                        <div class="image-carousel">
+                            <div class="carousel-track">
+                                <img class="project-image active" src="images/car1.jpg" alt="F1 Car Front View">
+                                <img class="project-image" src="images/car2.jpg" alt="F1 Car Side View">
+                                <img class="project-image" src="images/car3.jpg" alt="F1 Car Interior">
+                            </div>
+                            <div class="carousel-dots">
+                                <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                            </div>
+                            <button class="carousel-prev">‹</button>
+                            <button class="carousel-next">›</button>
+                        </div>
+                        <div class="image-overlay">
+                            <div class="view-button" onclick="openImageGallery([
+                                {src: 'images/car1.jpg', title: 'Base Geometry & Blocking'}, 
+                                {src: 'images/car2.jpg', title: 'Materials & Texturing'},
+                                {src: 'images/car3.jpg', title: 'Final Render & Lighting'}
+                            ], 'Formula 1 Racing Car')">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke="white" stroke-width="2"/>
+                                    <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke="white" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="model-tags">
+                            <span class="tag">Automotive</span><span class="tag">Racing</span>
+                        </div>
+                        <h3 class="model-title">Formula 1 Racing Car</h3>
+                        <p class="project-description">Highly detailed Formula 1 racing car model featuring authentic aerodynamics and materials.</p>
+                        <div class="project-features">
+                            <ul>
+                                <li>Accurate aerodynamic components</li>
+                                <li>High-resolution textures</li>
+                                <li>Professional lighting</li>
+                            </ul>
+                        </div>
+                        <button class="btn-outline" onclick="openImageGallery([
+                            {src: 'images/car1.jpg', title: 'Base Geometry & Blocking'}, 
+                            {src: 'images/car2.jpg', title: 'Materials & Texturing'},
+                            {src: 'images/car3.jpg', title: 'Final Render & Lighting'}
+                        ], 'Formula 1 Racing Car')">View Gallery</button>
+                    </div>
+                </div>
+
+                <div class="project-card model-card">
+                    <div class="project-images-wrapper">
+                        <div class="image-carousel">
+                            <div class="carousel-track">
+                                <img class="project-image active" src="images/house1.jpg" alt="Architecture Exterior">
+                                <img class="project-image" src="images/house2.jpg" alt="Architecture Interior">
+                                <img class="project-image" src="images/Gloria.jpg" alt="Architecture Night View">
+                            </div>
+                            <div class="carousel-dots">
+                                <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+                            </div>
+                            <button class="carousel-prev">‹</button>
+                            <button class="carousel-next">›</button>
+                        </div>
+                        <div class="image-overlay">
+                            <div class="view-button" onclick="openImageGallery([
+                                {src: 'images/house1.jpg', title: 'Exterior'}, 
+                                {src: 'images/house2.jpg', title: 'Interior'},
+                                {src: 'images/Gloria.jpg', title: 'Night View'}
+                            ], 'Modern Architecture')">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke="white" stroke-width="2"/>
+                                    <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke="white" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="model-tags">
+                            <span class="tag">Architecture</span><span class="tag">Modern</span>
+                        </div>
+                        <h3 class="model-title">Modern House</h3>
+                        <p class="project-description">Contemporary architectural visualization showcasing modern design principles.</p>
+                        <div class="project-features">
+                            <ul>
+                                <li>Realistic lighting and shadows</li>
+                                <li>Detailed interior elements</li>
+                                <li>Day and night scenarios</li>
+                            </ul>
+                        </div>
+                        <button class="btn-outline" onclick="openImageGallery([
+                            {src: 'images/house1.jpg', title: 'Exterior'}, 
+                            {src: 'images/house2.jpg', title: 'Interior'},
+                            {src: 'images/Gloria.jpg', title: 'Night View'}
+                        ], 'Modern Architecture')">View Gallery</button>
+                    </div>
+                </div>
+
+                <div class="project-card model-card">
+                    <div class="project-images-wrapper">
+                        <div class="image-carousel">
+                            <div class="carousel-track">
+                                <img class="project-image active" src="images/hammer.jpg" alt="Hammer">
+                            </div>
+                        </div>
+                        <div class="image-overlay">
+                            <div class="view-button" onclick="openImageViewer('images/hammer.jpg', 'Hammer Design')">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke="white" stroke-width="2"/>
+                                    <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke="white" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                         <div class="model-tags">
+                            <span class="tag">Product</span><span class="tag">Tool</span>
+                        </div>
+                        <h3 class="model-title">Hammer</h3>
+                        <p class="project-description">Commercial product visualization with focus on material accuracy.</p>
+                        <div class="project-features">
+                            <ul>
+                                <li>Photorealistic materials</li>
+                                <li>Ergonomic design focus</li>
+                                <li>Market-ready quality</li>
+                            </ul>
+                        </div>
+                        <button class="btn-outline" onclick="openImageViewer('images/hammer.jpg', 'Hammer Design')">View Gallery</button>
+                    </div>
+                </div>
+
+                <div class="project-card model-card">
+                    <div class="project-images-wrapper">
+                        <div class="image-carousel">
+                            <div class="carousel-track">
+                                <img class="project-image active" src="images/TIER.jpg" alt="Tier">
+                            </div>
+                        </div>
+                        <div class="image-overlay">
+                            <div class="view-button" onclick="openImageViewer('images/TIER.jpg', 'Tier Design')">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke="white" stroke-width="2"/>
+                                    <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke="white" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="model-tags">
+                            <span class="tag">Product</span><span class="tag">Concept</span>
+                        </div>
+                        <h3 class="model-title">Tier</h3>
+                        <p class="project-description">Conceptual product design visualization.</p>
+                        <div class="project-features">
+                            <ul>
+                                <li>High-quality texturing</li>
+                                <li>Studio lighting setup</li>
+                                <li>Detail-oriented topology</li>
+                            </ul>
+                        </div>
+                        <button class="btn-outline" onclick="openImageViewer('images/TIER.jpg', 'Tier Design')">View Gallery</button>
+                    </div>
+                </div>
+
+                <div class="project-card model-card">
+                    <div class="project-images-wrapper">
+                        <div class="image-carousel">
+                            <div class="carousel-track">
+                                <img class="project-image active" src="images/man2.jpg" alt="Gold">
+                                <img class="project-image" src="images/man3.jpg" alt="Black">
+                            </div>
+                            <div class="carousel-dots">
+                                <span class="dot active"></span><span class="dot"></span>
+                            </div>
+                            <button class="carousel-prev">‹</button>
+                            <button class="carousel-next">›</button>
+                        </div>
+                        <div class="image-overlay">
+                            <div class="view-button" onclick="openImageGallery([
+                                {src: 'images/man2.jpg', title: 'Gold Variant'}, 
+                                {src: 'images/man3.jpg', title: 'Black Variant'}
+                            ], 'Environment Character')">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke="white" stroke-width="2"/>
+                                    <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" stroke="white" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="model-tags">
+                            <span class="tag">Environment</span><span class="tag">Character</span>
+                        </div>
+                        <h3 class="model-title">Character & Env</h3>
+                        <p class="project-description">Immersive environment scene with atmospheric lighting and character study.</p>
+                        <div class="project-features">
+                            <ul>
+                                <li>Atmospheric lighting</li>
+                                <li>Material variants (Gold/Black)</li>
+                                <li>Optimized for real-time</li>
+                            </ul>
+                        </div>
+                        <button class="btn-outline" onclick="openImageGallery([
+                            {src: 'images/man2.jpg', title: 'Gold Variant'}, 
+                            {src: 'images/man3.jpg', title: 'Black Variant'}
+                        ], 'Environment Character')">View Gallery</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div id="imageModal" class="image-modal">
+        <div class="image-modal-content">
+            <div class="image-modal-header">
+                <h3 id="modalModelTitle">3D Model</h3>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div id="imageCounter" class="image-counter">1 / 1</div>
+                    <button class="close-button" onclick="closeImageViewer()">✕</button>
+                </div>
+            </div>
+            <div class="image-viewer-wrapper">
+                <img id="modalImage" src="" alt="3D Model View" />
+                <div class="gallery-controls">
+                    <button class="gallery-prev" onclick="navigateGallery(-1)">‹</button>
+                    <button class="gallery-next" onclick="navigateGallery(1)">›</button>
+                </div>
+                <div id="imageTitle" class="image-title"></div>
+            </div>
+            <div class="image-modal-controls">
+                <button class="btn-secondary" onclick="closeImageViewer()">Close</button>
+                <button class="btn-primary" onclick="downloadCurrentImage()">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="about model-stats">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">3D Modeling Expertise</h2>
+                <p class="section-subtitle">Professional statistics and capabilities</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">3D Models Created</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Industry Sectors</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Images Available</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Partham Kumar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let currentGallery = [];
+        let currentImageIndex = 0;
+        let currentImageSrc = '';
+
+        function openImageViewer(imageSrc, modelTitle) {
+            openImageGallery([{src: imageSrc, title: modelTitle}], modelTitle);
+        }
+
+        function openImageGallery(images, modelTitle) {
+            currentGallery = images;
+            currentImageIndex = 0;
+            updateModalContent(modelTitle);
+            
+            document.querySelector('.gallery-controls').style.display = images.length > 1 ? 'flex' : 'none';
+            document.getElementById('imageModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function updateModalContent(modelTitle) {
+            const imgData = currentGallery[currentImageIndex];
+            document.getElementById('modalImage').src = imgData.src;
+            document.getElementById('modalModelTitle').textContent = modelTitle || '3D Model';
+            document.getElementById('imageTitle').textContent = imgData.title;
+            document.getElementById('imageCounter').textContent = `${currentImageIndex + 1} / ${currentGallery.length}`;
+            currentImageSrc = imgData.src;
+        }
+
+        function navigateGallery(direction) {
+            if (currentGallery.length <= 1) return;
+            currentImageIndex = (currentImageIndex + direction + currentGallery.length) % currentGallery.length;
+            updateModalContent(document.getElementById('modalModelTitle').textContent);
+        }
+
+        function closeImageViewer() {
+            document.getElementById('imageModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function downloadCurrentImage() {
+            if (currentImageSrc) {
+                const link = document.createElement('a');
+                link.href = currentImageSrc;
+                link.download = currentImageSrc.split('/').pop();
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+
+        // Carousel Logic for cards
+        document.querySelectorAll('.image-carousel').forEach(carousel => {
+            const images = carousel.querySelectorAll('.project-image');
+            const dots = carousel.querySelectorAll('.dot');
+            const prev = carousel.querySelector('.carousel-prev');
+            const next = carousel.querySelector('.carousel-next');
+            let slide = 0;
+
+            const update = () => {
+                images.forEach((img, i) => img.classList.toggle('active', i === slide));
+                if(dots.length) dots.forEach((dot, i) => dot.classList.toggle('active', i === slide));
+            };
+
+            if (prev) prev.onclick = (e) => { e.stopPropagation(); slide = (slide - 1 + images.length) % images.length; update(); };
+            if (next) next.onclick = (e) => { e.stopPropagation(); slide = (slide + 1) % images.length; update(); };
+        });
+
+        // Close modal on click outside
+        document.getElementById('imageModal').onclick = function(e) {
+            if(e.target === this) closeImageViewer();
+        };
+    </script>
+</body>
+</html>

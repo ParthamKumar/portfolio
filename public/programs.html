@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Portfolio - Partham Kumar</title>
+    <link rel="canonical" href="https://roycenoel.space/programs.html">
+    <link rel="icon" type="image/png" href="images/portfolioIcon.png">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Page specific styles for controls */
+        .projects-controls select, .projects-controls input {
+            background: var(--bg-card);
+            color: var(--text-white);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 1.2rem;
+            border-radius: var(--radius-pill);
+        }
+        
+        .projects-controls select:focus, .projects-controls input:focus {
+            outline: none;
+            border-color: var(--text-white);
+        }
+
+        /* Modal specific for this page */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            color: var(--text-white);
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Portfolio</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="programs.html" class="nav-link active" style="color: var(--text-white);">Programs</a></li>
+                <li class="nav-item"><a href="index.html#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="btn-resume" onclick="window.open('https://drive.google.com/file/d/1pVW5ryvmPn5h9yOMW7DgkHSV0Aw_SXBy/view?usp=sharing', '_blank')">Resume</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-tagline">Code & Algorithms</span>
+                <h1 class="hero-title">Programming<br>Portfolio</h1>
+                <p class="hero-description">Explore my collection of programming projects showcasing full-stack development, algorithm implementations, and innovative solutions.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">View Projects</button>
+                    <a href="https://github.com/roycenoel" target="_blank" class="btn-secondary">GitHub Profile</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">GitHub Repositories</h2>
+                <p class="section-subtitle">Live data from my coding activity</p>
+            </div>
+
+            <div class="projects-controls" style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 3rem; flex-wrap: wrap;">
+                <input type="text" id="project-search" placeholder="Search projects...">
+                <select id="language-filter"><option value="">All Languages</option></select>
+                <select id="sort-select">
+                    <option value="stars">Sort by Stars</option>
+                    <option value="updated">Sort by Updated</option>
+                    <option value="name">Sort by Name</option>
+                </select>
+            </div>
+
+            <div id="loading-state" style="text-align: center; color: var(--text-gray);">Loading projects...</div>
+            <div id="projects-grid" class="projects-grid"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Partham Kumar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1.5rem;">
+                <h2 id="modal-title" style="font-size: 1.5rem;">Title</h2>
+                <button onclick="document.getElementById('project-modal').style.display='none'" style="background:none; border:none; color:white; cursor:pointer; font-size: 1.5rem;">&times;</button>
+            </div>
+            <p id="modal-description" style="color: var(--text-gray); margin-bottom: 1.5rem;"></p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; text-align: center;">
+                    <small style="color: var(--text-gray);">Language</small><br>
+                    <strong id="modal-language">JS</strong>
+                </div>
+                <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; text-align: center;">
+                    <small style="color: var(--text-gray);">Stars</small><br>
+                    <strong id="modal-stars">0</strong>
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <a id="modal-github-link" href="#" target="_blank" class="btn-primary">View on GitHub</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // GitHub API Logic
+        const USERNAME = 'roycenoel';
+        let allRepos = [];
+
+        async function init() {
+            try {
+                const res = await fetch(`https://api.github.com/users/${USERNAME}/repos?sort=updated&per_page=100`);
+                allRepos = await res.json();
+                renderProjects(allRepos);
+                populateLanguages(allRepos);
+                document.getElementById('loading-state').style.display = 'none';
+            } catch (e) {
+                document.getElementById('loading-state').innerText = 'Failed to load projects.';
+            }
+        }
+
+        function createCard(repo) {
+            const card = document.createElement('div');
+            // Matching the CSS class from style.css
+            card.className = 'project-card'; 
+            // Manual overrides to ensure dynamic content fits the theme
+            card.style.cssText = `
+                background: var(--bg-card); 
+                border: 1px solid var(--border-color); 
+                padding: 2rem; 
+                display: flex; 
+                flex-direction: column; 
+                border-radius: var(--radius-lg);
+                cursor: pointer;
+                transition: transform 0.2s;
+            `;
+            
+            card.innerHTML = `
+                <h3 style="color: var(--text-white); font-size: 1.25rem; margin-bottom: 0.5rem;">${repo.name}</h3>
+                <p style="color: var(--text-gray); font-size: 0.9rem; flex: 1; margin-bottom: 1.5rem;">${repo.description || 'No description available.'}</p>
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-gray);">
+                    <span style="background: rgba(255,255,255,0.1); padding: 4px 8px; border-radius: 4px;">${repo.language || 'Code'}</span>
+                    <span>★ ${repo.stargazers_count}</span>
+                </div>
+            `;
+            
+            card.addEventListener('click', () => openModal(repo));
+            return card;
+        }
+
+        function renderProjects(repos) {
+            const grid = document.getElementById('projects-grid');
+            grid.innerHTML = '';
+            repos.forEach(repo => grid.appendChild(createCard(repo)));
+        }
+
+        function openModal(repo) {
+            document.getElementById('modal-title').innerText = repo.name;
+            document.getElementById('modal-description').innerText = repo.description || 'No description.';
+            document.getElementById('modal-language').innerText = repo.language || 'N/A';
+            document.getElementById('modal-stars').innerText = repo.stargazers_count;
+            document.getElementById('modal-github-link').href = repo.html_url;
+            document.getElementById('project-modal').style.display = 'flex';
+        }
+
+        // Filter Logic
+        function filterProjects() {
+            const search = document.getElementById('project-search').value.toLowerCase();
+            const lang = document.getElementById('language-filter').value;
+            const sort = document.getElementById('sort-select').value;
+
+            let filtered = allRepos.filter(r => 
+                (r.name.toLowerCase().includes(search)) && 
+                (lang === '' || r.language === lang)
+            );
+
+            if(sort === 'stars') filtered.sort((a,b) => b.stargazers_count - a.stargazers_count);
+            if(sort === 'updated') filtered.sort((a,b) => new Date(b.updated_at) - new Date(a.updated_at));
+            if(sort === 'name') filtered.sort((a,b) => a.name.localeCompare(b.name));
+
+            renderProjects(filtered);
+        }
+
+        function populateLanguages(repos) {
+            const langs = [...new Set(repos.map(r => r.language).filter(l => l))];
+            const select = document.getElementById('language-filter');
+            langs.forEach(l => {
+                const opt = document.createElement('option');
+                opt.value = l;
+                opt.innerText = l;
+                select.appendChild(opt);
+            });
+        }
+
+        document.getElementById('project-search').addEventListener('input', filterProjects);
+        document.getElementById('language-filter').addEventListener('change', filterProjects);
+        document.getElementById('sort-select').addEventListener('change', filterProjects);
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('project-modal');
+            if (event.target == modal) modal.style.display = "none";
+        }
+
+        init();
+    </script>
+</body>
+</html>
