@@ -738,27 +738,13 @@ spline-viewer {
   height: 54px;
   margin-bottom: 1rem;
   border-radius: 50%;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 800;
-  letter-spacing: 0;
+  background: rgba(255, 255, 255, 0.08);
 }
 
-.gmail-logo {
-  background: linear-gradient(135deg, #ea4335, #fbbc05);
-}
-
-.linkedin-logo {
-  background: #0a66c2;
-  font-size: 1.15rem;
-}
-
-.github-logo {
-  background: #24292f;
-}
-
-.whatsapp-logo {
-  background: #25d366;
+.contact-logo img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 .instagram-logo {
