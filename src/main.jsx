@@ -17,7 +17,7 @@ const projects = [
   {
     category: 'applications',
     title: 'ArguMint',
-    image: '/Projects/argumint/ArguMint Image.png',
+    image: '/Projects/ArguMint/ArguMint Image.png',
     description: 'An AI-powered research project that transforms argumentative claims into meaningful visual representations using advanced AI pipelines.',
     features: ['Research-driven AI project', 'LoRA-based parameter-efficient fine-tuning', 'Semantic understanding with embeddings', 'Transformer & Generative AI workflows', 'Real-time AI image generation pipeline'],
     link: 'https://argumint-blog.vercel.app/',
@@ -25,7 +25,7 @@ const projects = [
   {
     category: 'applications',
     title: 'ShopBuddy',
-    image: '/Projects/shopbuddy/ShopBuddy Thumbnail2.png',
+    image: '/Projects/ShopBuddy/ShopBuddy Thumbnail2.png',
     description: 'An AI-powered shopping assistant that provides transparent product recommendations by comparing marketplaces, analyzing reviews, and explaining decisions through a multi-agent AI workflow.',
     features: ['Multi-Agent AI Architecture', 'Intelligent Product Comparison', 'Price Normalization Across Platforms', 'AI-Powered Review Analysis', 'Transparent Recommendation Reasoning'],
     link: '/shopbuddy',
@@ -270,7 +270,7 @@ function ShopBuddyPage() {
           </div>
         </div>
         <div className="project-detail-spline">
-          <Spline scene="/Projects/shopbuddy/scene.splinecode" />
+          <Spline scene="/Projects/ShopBuddy/scene.splinecode" />
         </div>
       </section>
 
@@ -292,7 +292,7 @@ function ShopBuddyPage() {
 function Spotlight({ project }) {
   return (
     <section className="spotlight" id="spotlight">
-      <div className="container"><div className="spotlight-wrapper"><div className="spotlight-visual"><img id="spotlight-img" src={project.image || '/Projects/shopbuddy/ShopBuddy Thumbnail2.png'} alt={`${project.title} preview`} /></div><div className="spotlight-info"><span className="spotlight-tag">Featured Work</span><h2 className="reveal-text">{project.title}</h2><p className="reveal-text">{project.description}</p><div className="spotlight-meta"><span>{project.category}</span></div><a href={project.link} className="btn-outline">View Details</a><div className="progress-bar"><div className="progress-fill" /></div></div></div></div>
+      <div className="container"><div className="spotlight-wrapper"><div className="spotlight-visual"><img id="spotlight-img" src={project.image || '/Projects/ShopBuddy/ShopBuddy Thumbnail2.png'} alt={`${project.title} preview`} /></div><div className="spotlight-info"><span className="spotlight-tag">Featured Work</span><h2 className="reveal-text">{project.title}</h2><p className="reveal-text">{project.description}</p><div className="spotlight-meta"><span>{project.category}</span></div><a href={project.link} className="btn-outline">View Details</a><div className="progress-bar"><div className="progress-fill" /></div></div></div></div>
     </section>
   );
 }
@@ -312,7 +312,7 @@ function Contact() {
     ['https://github.com/ParthamKumar', '/Logos/github.png', 'GitHub', 'github.com/ParthamKumar'],
     ['https://wa.me/923363428830', '/Logos/whatsapp.png', 'WhatsApp', '+92 336 3428830'],
   ];
-  return <section className="contact" id="contact"><div className="container"><div className="section-header"><h2 className="section-title">Let's Connect</h2><p className="section-subtitle">Ready to bring your ideas to life</p></div><div className="contact-links"><div className="contact-cards">{contacts.map(([href, icon, label, value]) => <a href={href} target="_blank" rel="noreferrer" className="contact-card" key={label}><span className="contact-logo"><img src={icon} alt={label} /></span><span className="contact-label">{label}</span><span className="contact-value">{value}</span></a>)}<a href="https://www.instagram.com/parthamchawla1/?hl=en" target="_blank" rel="noreferrer" className="contact-card"><span className="contact-logo instagram-logo">IG</span><span className="contact-label">Instagram</span><span className="contact-value">@parthamchawla1</span></a></div></div></div></section>;
+  return <section className="contact" id="contact"><div className="container"><div className="section-header"><h2 className="section-title">Let's Connect</h2><p className="section-subtitle">Ready to bring your ideas to life</p></div><div className="contact-links"><div className="contact-cards">{contacts.map(([href, icon, label, value]) => <a href={href} target="_blank" rel="noreferrer" className="contact-card" key={label}><span className="contact-logo"><img src={icon} alt={label} /></span><span className="contact-label">{label}</span><span className="contact-value">{value}</span></a>)}<a href="https://www.instagram.com/parthamchawla1/?hl=en" target="_blank" rel="noreferrer" className="contact-card"><span className="contact-logo"><img src="/Logos/icons8-instagram-48.png" alt="Instagram" /></span><span className="contact-label">Instagram</span><span className="contact-value">@parthamchawla1</span></a></div></div></div></section>;
 }
 
 createRoot(document.getElementById('root')).render(<App />);
