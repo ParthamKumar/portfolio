@@ -132,6 +132,657 @@
   height: 100% !important;
 }
 
+.attention-detail-hero {
+  align-items: center;
+}
+
+.attention-page {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(0, 255, 213, 0.08), transparent 28rem),
+    radial-gradient(circle at 84% 28%, rgba(108, 99, 255, 0.16), transparent 32rem),
+    #050505;
+  overflow: hidden;
+}
+
+.attention-research-hero {
+  position: relative;
+}
+
+.attention-grid-bg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.38;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(93, 169, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(93, 169, 255, 0.08) 1px, transparent 1px);
+  background-size: 58px 58px;
+  mask-image: radial-gradient(circle at center, black, transparent 72%);
+  animation: attentionGridDrift 16s linear infinite;
+}
+
+.attention-orbit {
+  position: absolute;
+  inset: 8rem 6vw auto auto;
+  width: 360px;
+  height: 360px;
+  pointer-events: none;
+  filter: blur(0.2px);
+}
+
+.attention-orbit span {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ffd5;
+  box-shadow: 0 0 18px rgba(0, 255, 213, 0.85);
+  transform: rotate(calc(var(--i) * 22.5deg)) translateX(160px);
+  animation: nodePulse 2.8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.12s);
+}
+
+.attention-page .project-detail-copy,
+.attention-hero-preview {
+  position: relative;
+  z-index: 1;
+}
+
+.tech-badge-row,
+.skill-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 2rem;
+}
+
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid rgba(93, 169, 255, 0.24);
+  border-radius: var(--radius-pill);
+  color: #d7fbff;
+  background: linear-gradient(135deg, rgba(0, 255, 213, 0.1), rgba(108, 99, 255, 0.08));
+  font-size: 0.84rem;
+  font-weight: 700;
+  box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.03), 0 0 24px rgba(0, 255, 213, 0.06);
+}
+
+.attention-hero-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 7rem max(8vw, 2rem) 4rem 2rem;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(93, 169, 255, 0.16), transparent 24rem),
+    radial-gradient(circle at 70% 70%, rgba(108, 99, 255, 0.14), transparent 22rem);
+}
+
+.attention-hero-preview > div,
+.attention-hero-preview canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.attention-hero-preview > div {
+  min-height: 680px;
+}
+
+.attention-section {
+  position: relative;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0)),
+    transparent;
+}
+
+.attention-section-header {
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.attention-two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(380px, 1.1fr);
+  gap: 1.5rem;
+  align-items: stretch;
+  max-width: 1220px;
+  margin: 0 auto;
+}
+
+.attention-two-column.compact {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.glass-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025)),
+    rgba(8, 8, 10, 0.8);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(0, 255, 213, 0.12), transparent 34%, rgba(108, 99, 255, 0.1));
+  opacity: 0.65;
+}
+
+.attention-copy-card,
+.architecture-flow-card,
+.bpe-card,
+.attention-viz-card,
+.multi-head-card,
+.architecture-stack,
+.code-tree-card,
+.training-flow-card {
+  padding: 2rem;
+}
+
+.attention-copy-card h2,
+.bpe-card h2,
+.attention-viz-card h2,
+.attention-dashboard h2 {
+  position: relative;
+  color: var(--text-white);
+  font-size: clamp(1.7rem, 3vw, 2.6rem);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.attention-copy-card p {
+  position: relative;
+  color: var(--text-gray);
+  font-size: 1.03rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+}
+
+.architecture-flow {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+.workflow-glass-node {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 0.8rem;
+  align-items: center;
+  padding: 0.88rem;
+  border: 1px solid rgba(93, 169, 255, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.045);
+  animation: nodeFloat 4.8s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.workflow-glass-node:hover {
+  border-color: rgba(0, 255, 213, 0.55);
+  background: rgba(0, 255, 213, 0.075);
+  transform: translateY(-3px) scale(1.01);
+}
+
+.node-icon {
+  grid-row: span 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  color: #050505;
+  background: linear-gradient(135deg, #00ffd5, #5da9ff);
+  font-weight: 900;
+}
+
+.workflow-glass-node h3 {
+  color: var(--text-white);
+  font-size: 0.96rem;
+  margin: 0;
+}
+
+.workflow-glass-node p {
+  color: var(--text-gray);
+  font-size: 0.84rem;
+  margin: 0;
+}
+
+.animated-arrow {
+  position: relative;
+  width: 2px;
+  height: 28px;
+  margin: 0 auto;
+  background: linear-gradient(180deg, transparent, rgba(0, 255, 213, 0.65), transparent);
+}
+
+.animated-arrow::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00ffd5;
+  box-shadow: 0 0 16px rgba(0, 255, 213, 0.85);
+  transform: translateX(-50%);
+  animation: arrowParticle 1.2s linear infinite;
+}
+
+.animated-arrow span {
+  position: absolute;
+  left: 50%;
+  bottom: -2px;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid rgba(0, 255, 213, 0.8);
+  border-bottom: 2px solid rgba(0, 255, 213, 0.8);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.horizontal-pipeline,
+.component-grid,
+.results-grid,
+.resource-grid {
+  display: grid;
+  max-width: 1220px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+.horizontal-pipeline {
+  grid-template-columns: repeat(7, minmax(130px, 1fr));
+}
+
+.pipeline-step,
+.component-card,
+.result-card {
+  position: relative;
+  padding: 1.2rem;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.pipeline-step {
+  min-height: 132px;
+  animation: stepGlow 3.5s ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.pipeline-step:hover,
+.component-card:hover,
+.result-card:hover {
+  border-color: rgba(0, 255, 213, 0.52);
+  transform: translateY(-6px);
+}
+
+.pipeline-step span,
+.component-card span {
+  position: relative;
+  display: block;
+  color: #00ffd5;
+  font-size: 0.78rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+}
+
+.pipeline-step h3,
+.component-card h3 {
+  position: relative;
+  color: var(--text-white);
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.bpe-word {
+  position: relative;
+  margin: 2rem 0 1.2rem;
+  padding: 1.2rem;
+  border-radius: 14px;
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.045);
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 0;
+}
+
+.bpe-token-row,
+.bpe-id-row,
+.qkv-row,
+.token-row {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.bpe-token-row span,
+.bpe-id-row span,
+.qkv-row span,
+.token-row span {
+  padding: 0.55rem 0.8rem;
+  border: 1px solid rgba(93, 169, 255, 0.22);
+  border-radius: 999px;
+  color: #dffcff;
+  background: rgba(93, 169, 255, 0.08);
+}
+
+.bpe-token-row span {
+  animation: tokenPop 2.4s ease-in-out infinite;
+}
+
+.bpe-token-row span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.bpe-token-row span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.bpe-id-row {
+  margin-top: 1rem;
+}
+
+.bpe-id-row span {
+  color: #050505;
+  background: linear-gradient(135deg, #00ffd5, #5da9ff);
+  font-weight: 900;
+}
+
+.attention-matrix {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.45rem;
+  max-width: 360px;
+  margin: 2rem auto 1.2rem;
+}
+
+.attention-matrix span {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  background: rgba(0, 255, 213, calc(var(--heat) * 0.08 + 0.08));
+  box-shadow: 0 0 calc(var(--heat) * 6px) rgba(0, 255, 213, 0.45);
+  animation: heatPulse 2.2s ease-in-out infinite;
+  animation-delay: calc(var(--heat) * -0.12s);
+}
+
+.multi-head-card {
+  max-width: 1120px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.embedding-bar {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 1px solid rgba(0, 255, 213, 0.28);
+  border-radius: 16px;
+  color: var(--text-white);
+  background: rgba(0, 255, 213, 0.06);
+  font-weight: 900;
+}
+
+.attention-heads {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(130px, 1fr));
+  gap: 1rem;
+  margin: 1.4rem 0;
+}
+
+.attention-head {
+  padding: 1rem;
+  border: 1px solid rgba(108, 99, 255, 0.24);
+  border-radius: 14px;
+  background: rgba(108, 99, 255, 0.08);
+  animation: headProcess 2.8s ease-in-out infinite;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.attention-head:hover {
+  background: rgba(0, 255, 213, 0.1);
+  transform: scale(1.06);
+}
+
+.attention-head span,
+.attention-head small {
+  display: block;
+}
+
+.attention-head span {
+  color: var(--text-white);
+  font-weight: 900;
+}
+
+.attention-head small {
+  margin-top: 0.45rem;
+  color: #00ffd5;
+}
+
+.transformer-diagram {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 180px minmax(280px, 1fr);
+  gap: 1.2rem;
+  align-items: center;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.architecture-stack h3 {
+  position: relative;
+  color: var(--text-white);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.stack-node {
+  position: relative;
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(93, 169, 255, 0.2);
+  border-radius: 12px;
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.045);
+  text-align: center;
+  font-weight: 700;
+}
+
+.cross-bridge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  color: #00ffd5;
+  font-weight: 900;
+}
+
+.cross-bridge::before,
+.cross-bridge::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 45%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ffd5);
+  box-shadow: 0 0 14px rgba(0, 255, 213, 0.8);
+}
+
+.cross-bridge::before {
+  left: 0;
+}
+
+.cross-bridge::after {
+  right: 0;
+  transform: rotate(180deg);
+}
+
+.component-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.resource-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.resource-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+  padding: 1.6rem;
+}
+
+.resource-card h3 {
+  position: relative;
+  color: var(--text-white);
+  font-size: 1.35rem;
+  line-height: 1.25;
+  margin-bottom: 0.85rem;
+}
+
+.resource-card p {
+  position: relative;
+  color: var(--text-gray);
+  line-height: 1.65;
+  margin-bottom: 1.4rem;
+}
+
+.resource-actions {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: auto;
+}
+
+.resource-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.github-resource-card {
+  border-color: rgba(0, 255, 213, 0.2);
+}
+
+.code-tree-card pre {
+  position: relative;
+  overflow-x: auto;
+  margin: 1rem 0 0;
+  color: #dffcff;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  animation: treeReveal 1.2s ease-out both;
+}
+
+.training-flow-card {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.attention-dashboard {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(0, 255, 213, 0.12), transparent 24rem),
+    radial-gradient(circle at 80% 80%, rgba(108, 99, 255, 0.16), transparent 24rem),
+    rgba(255, 255, 255, 0.045);
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.44);
+}
+
+.results-grid {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  margin: 2rem auto;
+}
+
+.result-card {
+  color: var(--text-white);
+  font-weight: 800;
+}
+
+.result-card span {
+  position: relative;
+  display: block;
+  margin-bottom: 0.6rem;
+  color: #00ffd5;
+  font-size: 1.45rem;
+}
+
+.attention-dashboard .skill-cloud {
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+@keyframes attentionGridDrift {
+  from { background-position: 0 0; }
+  to { background-position: 58px 58px; }
+}
+
+@keyframes nodePulse {
+  0%, 100% { opacity: 0.28; scale: 0.78; }
+  50% { opacity: 1; scale: 1.2; }
+}
+
+@keyframes nodeFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -4px; }
+}
+
+@keyframes arrowParticle {
+  from { top: -4px; opacity: 0; }
+  20% { opacity: 1; }
+  to { top: calc(100% - 4px); opacity: 0; }
+}
+
+@keyframes stepGlow {
+  0%, 100% { box-shadow: 0 18px 48px rgba(0, 0, 0, 0.26); }
+  50% { box-shadow: 0 18px 48px rgba(0, 255, 213, 0.11); }
+}
+
+@keyframes tokenPop {
+  0%, 100% { transform: translateY(0); border-color: rgba(93, 169, 255, 0.22); }
+  50% { transform: translateY(-6px); border-color: rgba(0, 255, 213, 0.6); }
+}
+
+@keyframes heatPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+@keyframes headProcess {
+  0%, 100% { border-color: rgba(108, 99, 255, 0.24); }
+  50% { border-color: rgba(0, 255, 213, 0.5); }
+}
+
+@keyframes treeReveal {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .project-detail-section {
   padding: var(--space-24) var(--space-6);
   border-top: 1px solid var(--border-color);
@@ -375,6 +1026,34 @@
 
   .project-detail-spline {
     min-height: 420px;
+  }
+
+  .attention-hero-preview {
+    min-height: auto;
+    padding: 0 var(--space-6) 4rem;
+  }
+
+  .attention-hero-preview > div {
+    min-height: 420px;
+  }
+
+  .attention-orbit {
+    display: none;
+  }
+
+  .attention-two-column,
+  .attention-two-column.compact,
+  .transformer-diagram {
+    grid-template-columns: 1fr;
+  }
+
+  .horizontal-pipeline,
+  .attention-heads {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .cross-bridge {
+    min-height: 70px;
   }
 
   .workflow-scroll {
