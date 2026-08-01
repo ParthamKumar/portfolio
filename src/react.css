@@ -641,7 +641,7 @@
 }
 
 .resource-grid {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
 }
 
 .resource-card {
@@ -1204,7 +1204,7 @@
 
 .agent-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
   gap: 1rem;
   max-width: 1220px;
   margin: 3rem auto 0;
@@ -1462,5 +1462,237 @@
 
   .agent-arrow {
     display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .project-detail-nav,
+  .project-detail-section {
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+
+  .project-detail-copy {
+    padding-left: var(--space-6);
+  }
+
+  .project-detail-spline {
+    width: 115%;
+    margin-left: -8%;
+  }
+
+  .horizontal-pipeline {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .attention-heads {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .project-detail-nav {
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .project-detail-brand {
+    font-size: 1.15rem;
+  }
+
+  .project-detail-cta {
+    padding: 0.65rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .project-detail-hero {
+    min-height: auto;
+  }
+
+  .project-detail-copy {
+    align-items: stretch;
+    max-width: none;
+    padding: 3rem 1rem 2rem;
+    text-align: left;
+  }
+
+  .project-detail-pill {
+    align-self: flex-start;
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .project-detail-copy h1 {
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
+
+  .project-detail-copy p {
+    font-size: 1rem;
+  }
+
+  .project-detail-spline {
+    width: 100%;
+    min-height: 320px;
+    margin-left: 0;
+    transform: none;
+  }
+
+  .project-detail-section {
+    padding: 3.25rem 1rem;
+  }
+
+  .project-detail-container,
+  .project-detail-container.reverse {
+    gap: 1.5rem;
+  }
+
+  .attention-hero-preview {
+    padding: 0 1rem 2.5rem;
+  }
+
+  .attention-hero-preview > div {
+    min-height: 320px;
+  }
+
+  .attention-copy-card,
+  .architecture-flow-card,
+  .bpe-card,
+  .attention-viz-card,
+  .multi-head-card,
+  .architecture-stack,
+  .code-tree-card,
+  .training-flow-card,
+  .budgetbee-placeholder-card,
+  .budgetbee-metrics-card,
+  .budgetbee-feature-card,
+  .budgetbee-workflow-card,
+  .database-diagram-card,
+  .budgetbee-timeline-card,
+  .budgetbee-architecture-card,
+  .detail-impact-card {
+    padding: 1.25rem;
+  }
+
+  .horizontal-pipeline,
+  .component-grid,
+  .results-grid,
+  .budgetbee-feature-grid,
+  .budgetbee-tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .attention-heads {
+    grid-template-columns: 1fr;
+  }
+
+  .workflow-glass-node {
+    grid-template-columns: 36px 1fr;
+  }
+
+  .node-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .budgetbee-phone-stage {
+    padding: 0 1rem 2.5rem;
+  }
+
+  .phone-main {
+    width: min(76vw, 260px);
+  }
+
+  .gallery-phone-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-phone,
+  .gallery-phone.tall {
+    max-width: 230px;
+    margin-top: 0;
+  }
+
+  .workflow-scroll {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+  }
+
+  .workflow-diagram {
+    min-width: 1320px;
+    gap: 1.25rem;
+  }
+
+  .workflow-step {
+    flex-basis: 155px;
+    min-height: 180px;
+    padding: 1rem;
+  }
+
+  .workflow-arrow {
+    right: -0.95rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .project-detail-nav {
+    align-items: flex-start;
+  }
+
+  .project-detail-cta {
+    white-space: nowrap;
+  }
+
+  .tech-badge-row,
+  .skill-cloud {
+    gap: 0.5rem;
+  }
+
+  .tech-badge {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .detail-impact-card h2,
+  .attention-copy-card h2,
+  .bpe-card h2,
+  .attention-viz-card h2,
+  .attention-dashboard h2,
+  .budgetbee-placeholder-card h2 {
+    font-size: 1.6rem;
+  }
+
+  .bpe-token-row,
+  .bpe-id-row,
+  .qkv-row,
+  .token-row {
+    justify-content: stretch;
+  }
+
+  .bpe-token-row span,
+  .bpe-id-row span,
+  .qkv-row span,
+  .token-row span {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
+  .budgetbee-timeline div {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .budgetbee-timeline span {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 900px) {
+  .project-detail-spline {
+    width: 100%;
+    margin-left: 0;
+    transform: none;
   }
 }
