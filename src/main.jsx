@@ -14,6 +14,11 @@ const navItems = [
   ['Contact', '#contact'],
 ];
 
+const resumeOptions = [
+  ['AI CV', '/CVs/Partham_Kumar_AI.pdf', 'Partham_Kumar_AI.pdf'],
+  ['Full Stack CV', '/CVs/Partham_Kumar_FS.pdf', 'Partham_Kumar_FS.pdf'],
+];
+
 const projects = [
   {
     category: 'applications',
@@ -41,51 +46,27 @@ const projects = [
   },
   {
     category: 'applications',
-    title: 'Spreadlink',
-    image: '/images/spreadlink.png',
-    description: 'The Next-Generation Social Media Platform for Entertainment and Creative Expression. Built to empower creators.',
-    features: ['Enterprise level project', '200+ Downloads', '4.9 Star Rating', '150+ Countries', '0% Ads'],
-    link: '/spreadlink.html',
+    title: 'SubifyHub',
+    image: '/Projects/Subifyhub/Thumbnail.png',
+    description: 'A complete bilingual e-commerce platform developed using the MERN Stack as a freelance contract project, featuring modern customer shopping and a powerful admin management system.',
+    features: ['React.js, Node.js, Express.js, MongoDB', 'Customer and Admin Panels', 'Product, Order, and User Management', 'REST API Architecture', 'Freelance Client Delivery'],
+    link: 'https://subifyhub.com/',
   },
   {
     category: 'applications',
-    title: 'Ominos',
-    image: '/images/ominos.png',
-    description: 'An Advanced AI Assistant designed for professionals, creators, and developers. Built for complex problem-solving.',
-    features: ['Advanced AI Reasoning', 'Live Voice Interaction', 'Neural Art Engine', 'Dark Cinematic UI', '0% Ads'],
-    link: '/ominos.html',
+    title: 'BudgetBee',
+    image: '/Projects/BudgetBee/Thumbnail.png',
+    description: 'A Java Android personal finance app for tracking income, expenses, reports, statistics, and multiple accounts with offline local storage powered by Realm.',
+    features: ['Income & Expense Tracking', 'Daily and Monthly Reports', 'Graph-Based Statistics', 'Multiple Account Management', 'Realm Local Database'],
+    link: '/budgetbee',
   },
   {
-    category: 'websites',
-    title: 'Websites',
-    image: '/images/musicplayer.png',
-    description: 'Collection of website projects focused on conversion and UX.',
-    features: ['5+ Projects', 'Conversion-focused UX', 'Performance first', 'Responsive by design'],
-    link: '/web.html',
-  },
-  {
-    category: 'games',
-    title: 'Games',
-    image: '/images/carimg2.jpg',
-    description: 'A curated selection of captivating mobile games offering diverse gameplay styles.',
-    features: ['3 Projects', 'Engaging and immersive gameplay', 'Intuitive mobile controls', 'Polished graphics'],
-    link: '/games.html',
-  },
-  {
-    category: 'models3d',
-    title: '3D Models',
-    image: '/images/car3.jpg',
-    description: 'Professional 3D models and visualizations for various applications.',
-    features: ['5 Projects', 'High-quality models', 'Accurate geometry', 'Professional lighting'],
-    link: '/3dmodels.html',
-  },
-  {
-    category: 'graphics',
-    title: 'UI/UX Design',
-    image: '/images/graphic.png',
-    description: 'Explore my collection of intuitive and aesthetically pleasing UI/UX designs.',
-    features: ['User research', 'Wireframing & Prototyping', 'Interactive design'],
-    link: '/graphics.html',
+    category: 'applications',
+    title: 'Medverses',
+    image: '/Projects/Medverses/Thumbnail.png',
+    description: 'A full-stack online test-solving and performance tracking platform with Admin and User panels, assessment tools, result management, and data-driven learning analytics.',
+    features: ['Online Test & Assessment System', 'Admin & User Dashboards', 'Performance Tracking & Analytics', 'Result Management', 'Question & Test Management'],
+    link: 'https://www.medverses.com/',
   },
 ];
 
@@ -127,6 +108,10 @@ function App() {
     return <AttentionPage />;
   }
 
+  if (window.location.pathname === '/budgetbee') {
+    return <BudgetBeePage />;
+  }
+
   if (window.location.pathname === '/shopbuddy') {
     return <ShopBuddyPage />;
   }
@@ -134,7 +119,7 @@ function App() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [typedRole, setTypedRole] = useState('AI Engineer');
   const [activeSpotlight, setActiveSpotlight] = useState(0);
-  const categories = [['all', 'All'], ['applications', 'Applications'], ['websites', 'Websites'], ['games', 'Games'], ['models3d', '3D Models'], ['graphics', 'Graphics']];
+  const categories = [['all', 'All'], ['applications', 'Applications']];
   const visibleProjects = useMemo(() => projects.filter((project) => activeCategory === 'all' || project.category === activeCategory), [activeCategory]);
   const spotlight = projects[activeSpotlight % projects.length];
 
@@ -178,7 +163,7 @@ function App() {
       <Experience />
       <Skills />
       <Contact />
-      <footer className="footer"><div className="container"><p>&copy; 2025 Partham Kumar. All rights reserved.</p></div></footer>
+      <footer className="footer"><div className="container"><p>&copy; 2026 Partham Kumar. All rights reserved.</p></div></footer>
     </>
   );
 }
@@ -189,7 +174,20 @@ function Navbar() {
       <div className="nav-container">
         <div className="nav-logo"><span className="logo-text">Portfolio</span></div>
         <ul className="nav-menu">{navItems.map(([label, href]) => <li className="nav-item" key={href}><a href={href} className="nav-link">{label}</a></li>)}</ul>
-        <div className="nav-cta"><a href="/Resume.pdf" download="Partham_Kumar_Resume.pdf" className="btn-resume">Resume</a></div>
+        <div className="nav-cta resume-menu">
+          <button className="btn-resume" type="button" aria-haspopup="true" aria-expanded="false">Resume</button>
+          <div className="resume-dropdown" aria-label="Resume options">
+            {resumeOptions.map(([label, href, fileName]) => (
+              <div className="resume-option" key={href}>
+                <span>{label}</span>
+                <div className="resume-actions">
+                  <a href={href} target="_blank" rel="noreferrer">Preview</a>
+                  <a href={href} download={fileName}>Download</a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </nav>
   );
@@ -548,6 +546,247 @@ function CodeTree() {
 function TrainingFlow() {
   const steps = ['Dataset', 'Tokenizer', 'Forward Pass', 'Loss Calculation', 'Backpropagation', 'Optimizer Update', 'Checkpoint'];
   return <GlassCard className="training-flow-card"><span className="section-kicker">Training Pipeline</span>{steps.map((step, index) => <React.Fragment key={step}><WorkflowNode title={step} text="Training stage" index={index} />{index < steps.length - 1 && <AnimatedArrow />}</React.Fragment>)}</GlassCard>;
+}
+
+function BudgetBeePage() {
+  const screenshots = [
+    ['/Projects/BudgetBee/i1.jpg', 'Dashboard overview', 'Dashboard Screens'],
+    ['/Projects/BudgetBee/i2.PNG', 'Income expense summary', 'Dashboard Screens'],
+    ['/Projects/BudgetBee/i3.PNG', 'Recent transactions', 'Transaction Management'],
+    ['/Projects/BudgetBee/i4.PNG', 'Add transaction workflow', 'Transaction Management'],
+    ['/Projects/BudgetBee/i5.PNG', 'Category selection', 'Transaction Management'],
+    ['/Projects/BudgetBee/i6.PNG', 'Financial graph analytics', 'Statistics Screens'],
+    ['/Projects/BudgetBee/i7.PNG', 'Monthly financial report', 'Statistics Screens'],
+    ['/Projects/BudgetBee/i8.PNG', 'Account management', 'Account Screens'],
+  ];
+  const features = [
+    ['Transaction Management', 'Users can easily add income and expenses with detailed information including category, account, date, and notes.', ['Income', 'Expense', 'Categories', 'Accounts', 'Notes']],
+    ['Financial Dashboard', 'Provides a quick overview of financial health through income, expenses, balance, and transaction summaries.', ['Balance Overview', 'Recent Activity', 'Summary Cards']],
+    ['Statistics & Analytics', 'Visualizes financial activities through graphs and daily or monthly analysis.', ['Graphs', 'Reports', 'Spending Trends']],
+    ['Account Management', 'Allows users to track multiple accounts including cash, bank, Sadapay, Easypaisa, and custom accounts.', ['Cash', 'Bank', 'Wallets']],
+    ['Offline Data Management', 'Uses Realm Database for fast local storage and offline financial tracking.', ['Realm', 'Local Storage', 'Offline First']],
+  ];
+  const workflow = [
+    ['User', 'Starts from everyday finance activity'],
+    ['Dashboard', 'Views balance and recent summaries'],
+    ['Transaction Management', 'Adds, edits, and organizes records'],
+    ['Business Logic', 'Validates and calculates financial state'],
+    ['Realm Database', 'Stores offline app data locally'],
+    ['Financial Analytics', 'Aggregates spending and income trends'],
+    ['Visual Reports', 'Displays graphs and useful insights'],
+  ];
+  const transactionFlow = [
+    ['User Input', 'Income or expense details'],
+    ['Transaction Form', 'Category, account, date, notes'],
+    ['Validation', 'Checks required financial fields'],
+    ['Realm Database', 'Persists local record'],
+    ['Summary Update', 'Refreshes dashboard totals'],
+    ['Statistics Graph', 'Updates financial visualizations'],
+  ];
+  const timeline = ['Requirement Analysis', 'UI Design', 'Android Development', 'Database Integration', 'Testing', 'Client Ready Application'];
+  const skills = ['Android Development', 'Java Programming', 'Mobile UI Development', 'Database Design', 'Realm Integration', 'CRUD Operations', 'Offline Applications', 'Data Visualization'];
+
+  return (
+    <main className="project-detail-page budgetbee-page">
+      <nav className="project-detail-nav">
+        <a href="/" className="project-detail-brand">BudgetBee<span>.</span></a>
+        <a href="/" className="project-detail-cta">Back Home</a>
+      </nav>
+
+      <section className="project-detail-hero budgetbee-hero">
+        <div className="budgetbee-bg-grid" aria-hidden="true" />
+        <div className="project-detail-copy">
+          <span className="project-detail-pill">Android Application</span>
+          <h1>BudgetBee<br />Smart Personal Finance Management Application</h1>
+          <p>
+            A Java-based Android finance application designed to track income, expenses, accounts,
+            and financial insights with offline-first storage.
+          </p>
+          <div className="tech-badge-row">{['Android Application', 'Java', 'Android Studio', 'Realm Database', 'Finance Management', 'Offline First'].map((item) => <TechBadge key={item}>{item}</TechBadge>)}</div>
+          <div className="project-detail-actions">
+            <a href="#gallery" className="btn-primary">View Screens</a>
+            <a href="https://github.com/ParthamKumar/BudgetBee" target="_blank" rel="noreferrer" className="btn-secondary">View GitHub</a>
+            <a href="/" className="btn-secondary">Portfolio</a>
+          </div>
+        </div>
+        <div className="budgetbee-phone-stage">
+          <PhoneMockup src="/Projects/BudgetBee/i1.jpg" alt="BudgetBee dashboard screen" className="phone-main" />
+          <PhoneMockup src="/Projects/BudgetBee/i6.PNG" alt="BudgetBee analytics screen" className="phone-float phone-float-left" />
+          <PhoneMockup src="/Projects/BudgetBee/i4.PNG" alt="BudgetBee transaction screen" className="phone-float phone-float-right" />
+        </div>
+      </section>
+
+      <section className="project-detail-section budgetbee-section">
+        <div className="attention-two-column compact">
+          <GlassCard className="budgetbee-placeholder-card">
+            <span className="section-kicker">Project Overview</span>
+            <h2>A simple but powerful finance assistant for daily life.</h2>
+            <p>
+              BudgetBee is a complete personal finance management Android application designed to
+              help users record transactions, monitor spending patterns, analyze financial trends,
+              manage multiple accounts, and improve financial decision-making.
+            </p>
+            <p>
+              Unlike basic expense trackers, BudgetBee combines organized transaction management,
+              graphical financial analysis, account-based tracking, and offline-first data storage
+              through Realm Database.
+            </p>
+            <div className="resource-actions budgetbee-repo-action">
+              <a href="https://github.com/ParthamKumar/BudgetBee" target="_blank" rel="noreferrer" className="btn-primary">Open Project Repository</a>
+            </div>
+          </GlassCard>
+          <GlassCard className="budgetbee-metrics-card">
+            <span className="section-kicker">Product Scope</span>
+            <div className="budgetbee-metrics">
+              {['Income Tracking', 'Expense Tracking', 'Monthly Reports', 'Graph Analytics', 'Multi Account', 'Offline Storage'].map((metric) => <span key={metric}>{metric}</span>)}
+            </div>
+          </GlassCard>
+        </div>
+      </section>
+
+      <section className="project-detail-section budgetbee-section" id="gallery">
+        <SectionIntro title="Application Screenshots" subtitle="Explore the complete user experience of BudgetBee, from recording transactions to analyzing financial performance." />
+        <ScreenshotGallery screenshots={screenshots} />
+      </section>
+
+      <section className="project-detail-section budgetbee-section">
+        <SectionIntro title="Feature Overview" subtitle="Core mobile finance workflows built for clarity, speed, and offline reliability." />
+        <div className="budgetbee-feature-grid">
+          {features.map(([title, description, tags], index) => <FeatureCard key={title} title={title} description={description} tags={tags} index={index} />)}
+        </div>
+      </section>
+
+      <section className="project-detail-section budgetbee-section">
+        <SectionIntro title="Application Workflow" subtitle="How user actions move through app screens, logic, local storage, and visual reports." />
+        <BudgetWorkflow nodes={workflow} />
+      </section>
+
+      <section className="project-detail-section budgetbee-section">
+        <div className="attention-two-column compact">
+          <BudgetWorkflow title="Transaction Flow" nodes={transactionFlow} />
+          <DatabaseDiagram />
+        </div>
+      </section>
+
+      <section className="project-detail-section budgetbee-section">
+        <SectionIntro title="Technology Stack" subtitle="A focused Android stack for native mobile development and fast local persistence." />
+        <div className="budgetbee-tech-grid">
+          {['Java', 'Android Studio', 'Realm Database', 'Mobile Development', 'UI/UX Design', 'Local Storage'].map((tech) => <GlassCard className="budgetbee-tech-card" key={tech}><span>{tech.slice(0, 2).toUpperCase()}</span><h3>{tech}</h3></GlassCard>)}
+        </div>
+      </section>
+
+      <section className="project-detail-section budgetbee-section">
+        <div className="attention-two-column compact">
+          <Timeline items={timeline} />
+          <ProjectArchitecture />
+        </div>
+      </section>
+
+      <section className="project-detail-section budgetbee-section">
+        <div className="attention-dashboard budgetbee-outcome">
+          <span className="section-kicker">Project Outcome</span>
+          <h2>Successfully developed a complete personal finance management application.</h2>
+          <p>
+            BudgetBee enables users to track, analyze, and manage their financial activities through
+            an intuitive mobile experience. The project demonstrates Android development from
+            scratch, real-world financial workflows, local database implementation, and data-driven
+            mobile interfaces.
+          </p>
+          <div className="skill-cloud">{skills.map((skill) => <TechBadge key={skill}>{skill}</TechBadge>)}</div>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function PhoneMockup({ src, alt, className = '' }) {
+  return <div className={`phone-mockup-frame ${className}`}><span className="phone-speaker" /><img src={src} alt={alt} /></div>;
+}
+
+function ScreenshotGallery({ screenshots }) {
+  const grouped = screenshots.reduce((acc, item) => {
+    const category = item[2];
+    acc[category] = acc[category] || [];
+    acc[category].push(item);
+    return acc;
+  }, {});
+  return (
+    <div className="budgetbee-gallery">
+      {Object.entries(grouped).map(([category, items]) => (
+        <div className="gallery-category" key={category}>
+          <h3>{category}</h3>
+          <div className="gallery-phone-grid">
+            {items.map(([src, alt], index) => <PhoneMockup key={src} src={src} alt={alt} className={index % 2 ? 'gallery-phone tall' : 'gallery-phone'} />)}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function FeatureCard({ title, description, tags, index }) {
+  return (
+    <GlassCard className="budgetbee-feature-card" style={{ '--delay': `${index * 0.12}s` }}>
+      <span className="feature-icon">{String(index + 1).padStart(2, '0')}</span>
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <div>{tags.map((tag) => <TechBadge key={tag}>{tag}</TechBadge>)}</div>
+    </GlassCard>
+  );
+}
+
+function BudgetWorkflow({ title = 'Workflow Diagram', nodes }) {
+  return (
+    <GlassCard className="budgetbee-workflow-card">
+      <span className="section-kicker">{title}</span>
+      <div className="budgetbee-workflow">
+        {nodes.map(([label, description], index) => (
+          <React.Fragment key={label}>
+            <WorkflowNode title={label} text={description} index={index} />
+            {index < nodes.length - 1 && <AnimatedArrow />}
+          </React.Fragment>
+        ))}
+      </div>
+    </GlassCard>
+  );
+}
+
+function DatabaseDiagram() {
+  return (
+    <GlassCard className="database-diagram-card">
+      <span className="section-kicker">Database Architecture</span>
+      <div className="database-root">BudgetBee</div>
+      <div className="database-branches">
+        <div><h3>Transactions</h3><p>Stores income and expense records</p></div>
+        <div><h3>Accounts</h3><p>Maintains cash, bank, and wallet information</p></div>
+        <div><h3>Categories</h3><p>Organizes financial activities</p></div>
+      </div>
+      <div className="database-root realm">Realm Database</div>
+    </GlassCard>
+  );
+}
+
+function Timeline({ items }) {
+  return (
+    <GlassCard className="budgetbee-timeline-card">
+      <span className="section-kicker">Development Process</span>
+      <div className="budgetbee-timeline">{items.map((item, index) => <div key={item} style={{ '--delay': `${index * 0.12}s` }}><span>{String(index + 1).padStart(2, '0')}</span><h3>{item}</h3></div>)}</div>
+    </GlassCard>
+  );
+}
+
+function ProjectArchitecture() {
+  return (
+    <GlassCard className="budgetbee-architecture-card">
+      <span className="section-kicker">Project Architecture</span>
+      {['Presentation Layer', 'Application Logic', 'Data Management Layer', 'Realm Database'].map((item, index, arr) => (
+        <React.Fragment key={item}>
+          <div className="stack-node">{item}</div>
+          {index < arr.length - 1 && <AnimatedArrow />}
+        </React.Fragment>
+      ))}
+    </GlassCard>
+  );
 }
 
 function ShopBuddyPage() {

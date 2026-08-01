@@ -136,6 +136,77 @@ body {
   transform: scale(1.05);
 }
 
+.resume-menu {
+  position: relative;
+}
+
+.resume-dropdown {
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: 0;
+  display: grid;
+  gap: 0.7rem;
+  min-width: 260px;
+  padding: 0.85rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: rgba(15, 15, 15, 0.96);
+  box-shadow: 0 22px 52px rgba(0, 0, 0, 0.42);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.resume-menu:hover .resume-dropdown,
+.resume-menu:focus-within .resume-dropdown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.resume-option {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.resume-option span {
+  color: var(--text-white);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.resume-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.resume-actions a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-white);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.resume-actions a:hover {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+}
+
 /* Hero Section */
 .hero {
   min-height: 100vh;
@@ -977,6 +1048,11 @@ spline-viewer {
   
   .nav-menu {
     display: none;
+  }
+
+  .resume-dropdown {
+    right: 0;
+    min-width: min(76vw, 260px);
   }
 
   .contact-grid {
