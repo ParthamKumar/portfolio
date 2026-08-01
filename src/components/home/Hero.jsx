@@ -18,7 +18,8 @@ export default function Hero({ typedRole }) {
           className="hero-visual"
           scene="https://prod.spline.design/ABrQHVpts78MTmiH/scene.splinecode"
           fallbackImage="/New/img.png"
-          alt="Partham Kumar portfolio portrait"
+          desktopImage="/New/bot.png"
+          alt="AI assistant robot portfolio visual"
         />
       </div>
     </section>

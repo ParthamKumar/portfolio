@@ -2,53 +2,40 @@ import React, { Suspense, lazy, useEffect, useState } from 'react';
 
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
-export default function ResponsiveSpline({ scene, fallbackImage, alt, className, imageClassName = 'responsive-spline-image' }) {
-  const [canRenderSpline, setCanRenderSpline] = useState(false);
+export default function ResponsiveSpline({ scene, fallbackImage, desktopImage, alt, className, imageClassName = 'responsive-spline-image' }) {
+  const [showSpline, setShowSpline] = useState(false);
 
   useEffect(() => {
-    const media = window.matchMedia('(min-width: 900px) and (pointer: fine)');
-    let timeoutId;
-    let idleId;
+    const media = window.matchMedia('(min-width: 768px)');
 
-    const enableSpline = () => {
-      if (!media.matches) {
-        setCanRenderSpline(false);
-        return;
-      }
-
-      const load = () => setCanRenderSpline(true);
-      if ('requestIdleCallback' in window) {
-        idleId = window.requestIdleCallback(load, { timeout: 1800 });
-      } else {
-        timeoutId = window.setTimeout(load, 900);
-      }
+    const syncSpline = () => {
+      setShowSpline(media.matches && Boolean(scene));
     };
 
-    enableSpline();
-    media.addEventListener('change', enableSpline);
+    syncSpline();
+    media.addEventListener('change', syncSpline);
 
-    return () => {
-      media.removeEventListener('change', enableSpline);
-      window.clearTimeout(timeoutId);
-      if (idleId) {
-        window.cancelIdleCallback(idleId);
-      }
-    };
-  }, []);
+    return () => media.removeEventListener('change', syncSpline);
+  }, [scene]);
 
   return (
     <div className={className}>
-      {canRenderSpline ? (
-        <Suspense fallback={<StaticSplineImage src={fallbackImage} alt={alt} className={imageClassName} />}>
+      {showSpline ? (
+        <Suspense fallback={<StaticSplineImage src={fallbackImage} desktopSrc={desktopImage} alt={alt} className={imageClassName} />}>
           <Spline scene={scene} />
         </Suspense>
       ) : (
-        <StaticSplineImage src={fallbackImage} alt={alt} className={imageClassName} />
+        <StaticSplineImage src={fallbackImage} desktopSrc={desktopImage} alt={alt} className={imageClassName} />
       )}
     </div>
   );
 }
 
-function StaticSplineImage({ src, alt, className }) {
-  return <img className={className} src={src} alt={alt} loading="eager" decoding="async" />;
+function StaticSplineImage({ src, desktopSrc, alt, className }) {
+  return (
+    <picture>
+      {desktopSrc && <source media="(min-width: 900px)" srcSet={desktopSrc} />}
+      <img className={className} src={src} alt={alt} loading="eager" decoding="async" />
+    </picture>
+  );
 }

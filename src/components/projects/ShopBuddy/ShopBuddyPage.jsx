@@ -35,7 +35,6 @@ export default function ShopBuddyPage() {
         </div>
         <ResponsiveSpline
           className="project-detail-spline"
-          scene="/Projects/ShopBuddy/scene.splinecode"
           fallbackImage="/Projects/ShopBuddy/ShopBuddy Thumbnail2.png"
           alt="ShopBuddy project preview"
         />
