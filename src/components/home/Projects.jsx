@@ -16,7 +16,7 @@ function ProjectCard({ project }) {
   return (
     <div className="project-card" data-category={project.category}>
       <div className="project-image">
-        <img className="project-icon" src={project.image} alt={`${project.title} thumbnail`} />
+        <img className="project-icon" src={project.image} alt={`${project.title} thumbnail`} loading="lazy" decoding="async" />
       </div>
       <div className="project-content">
         <h3 className="project-title">{project.title}</h3>

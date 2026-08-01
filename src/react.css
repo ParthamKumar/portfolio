@@ -132,6 +132,12 @@
   height: 100% !important;
 }
 
+.project-detail-spline .responsive-spline-image,
+.attention-hero-preview .responsive-spline-image {
+  object-fit: contain;
+  padding: 1.25rem;
+}
+
 .attention-detail-hero {
   align-items: center;
 }

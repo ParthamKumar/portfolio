@@ -1,6 +1,5 @@
-import React, { Suspense, lazy } from 'react';
-
-const Spline = lazy(() => import('@splinetool/react-spline'));
+import React from 'react';
+import ResponsiveSpline from '../common/ResponsiveSpline';
 
 export default function Hero({ typedRole }) {
   return (
@@ -15,7 +14,12 @@ export default function Hero({ typedRole }) {
             <a className="btn-secondary" href="#contact">Get In Touch</a>
           </div>
         </div>
-        <div className="hero-visual"><Suspense fallback={<div className="spline-loading">Loading 3D preview...</div>}><Spline scene="https://prod.spline.design/ABrQHVpts78MTmiH/scene.splinecode" /></Suspense></div>
+        <ResponsiveSpline
+          className="hero-visual"
+          scene="https://prod.spline.design/ABrQHVpts78MTmiH/scene.splinecode"
+          fallbackImage="/images/me.png"
+          alt="Partham Kumar portfolio portrait"
+        />
       </div>
     </section>
   );

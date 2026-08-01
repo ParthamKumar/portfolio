@@ -1,6 +1,5 @@
-import React, { Suspense, lazy } from 'react';
-
-const Spline = lazy(() => import('@splinetool/react-spline'));
+import React from 'react';
+import ResponsiveSpline from '../../common/ResponsiveSpline';
 
 export default function ShopBuddyPage() {
   const agents = [
@@ -34,11 +33,12 @@ export default function ShopBuddyPage() {
             <a href="/" className="btn-secondary">Portfolio</a>
           </div>
         </div>
-        <div className="project-detail-spline">
-          <Suspense fallback={<div className="spline-loading">Loading 3D preview...</div>}>
-            <Spline scene="/Projects/ShopBuddy/scene.splinecode" />
-          </Suspense>
-        </div>
+        <ResponsiveSpline
+          className="project-detail-spline"
+          scene="/Projects/ShopBuddy/scene.splinecode"
+          fallbackImage="/Projects/ShopBuddy/ShopBuddy Thumbnail2.png"
+          alt="ShopBuddy project preview"
+        />
       </section>
 
       <section className="project-detail-section" id="overview">

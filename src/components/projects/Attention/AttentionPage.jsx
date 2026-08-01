@@ -1,10 +1,7 @@
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 
 import { AnimatedArrow, GlassCard, SectionIntro, TechBadge, WorkflowNode } from '../../common/ProjectPrimitives';
-
-
-
-const Spline = lazy(() => import('@splinetool/react-spline'));
+import ResponsiveSpline from '../../common/ResponsiveSpline';
 
 
 
@@ -68,11 +65,12 @@ export default function AttentionPage() {
             <a href="#implementation" className="btn-secondary">View Components</a>
           </div>
         </div>
-        <div className="attention-hero-preview">
-          <Suspense fallback={<div className="spline-loading">Loading 3D preview...</div>}>
-            <Spline scene="https://prod.spline.design/vW1SBAQuLiI97Aq1/scene.splinecode" />
-          </Suspense>
-        </div>
+        <ResponsiveSpline
+          className="attention-hero-preview"
+          scene="https://prod.spline.design/vW1SBAQuLiI97Aq1/scene.splinecode"
+          fallbackImage="/Projects/Attention Is All You Need/Thumbnail.png"
+          alt="Transformer NLP project preview"
+        />
       </section>
 
       <section className="project-detail-section attention-section" id="overview">
