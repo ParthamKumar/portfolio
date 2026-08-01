@@ -1,4 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/home/Hero';
 import About from './components/home/About';
@@ -11,20 +13,10 @@ import AttentionPage from './components/projects/Attention/AttentionPage';
 import BudgetBeePage from './components/projects/BudgetBee/BudgetBeePage';
 import ShopBuddyPage from './components/projects/ShopBuddy/ShopBuddyPage';
 import { projects } from './data/portfolioData';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 
-export default function App() {
-  if (window.location.pathname === '/attention-is-all-you-need') {
-    return <AttentionPage />;
-  }
-
-  if (window.location.pathname === '/budgetbee') {
-    return <BudgetBeePage />;
-  }
-
-  if (window.location.pathname === '/shopbuddy') {
-    return <ShopBuddyPage />;
-  }
-
+function HomePage() {
   const [activeCategory, setActiveCategory] = useState('all');
   const [typedRole, setTypedRole] = useState('AI Engineer');
   const [activeSpotlight, setActiveSpotlight] = useState(0);
@@ -64,6 +56,10 @@ export default function App() {
 
   return (
     <>
+      <Helmet>
+        <title>Partham Kumar | AI Engineer & Full Stack Developer</title>
+        <meta name="description" content="Portfolio of Partham Kumar, an AI engineer and full stack developer building AI applications, agent workflows, and modern web platforms." />
+      </Helmet>
       <Navbar />
       <Hero typedRole={typedRole} />
       <About />
@@ -74,5 +70,28 @@ export default function App() {
       <Contact />
       <footer className="footer"><div className="container"><p>&copy; 2026 Partham Kumar. All rights reserved.</p></div></footer>
     </>
+  );
+}
+
+function BlogShell({ children }) {
+  return (
+    <>
+      <Navbar />
+      {children}
+      <footer className="footer"><div className="container"><p>&copy; 2026 Partham Kumar. All rights reserved.</p></div></footer>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/attention-is-all-you-need" element={<AttentionPage />} />
+      <Route path="/budgetbee" element={<BudgetBeePage />} />
+      <Route path="/shopbuddy" element={<ShopBuddyPage />} />
+      {/* <Route path="/blog" element={<BlogShell><Blog /></BlogShell>} />
+      <Route path="/blog/:slug" element={<BlogShell><BlogPost /></BlogShell>} /> */}
+    </Routes>
   );
 }

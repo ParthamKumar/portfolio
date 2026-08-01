@@ -1,0 +1,38 @@
+---
+title: "RAG Systems: Building Retrieval That Actually Helps"
+date: "2026-07-25"
+description: "How to design retrieval augmented generation systems with better chunking, ranking, grounding, and evaluation."
+category: "RAG"
+coverImage: "/Projects/Attention Is All You Need/Thumbnail.png"
+---
+
+Retrieval augmented generation works best when retrieval is treated as a product problem, not just an embedding call. The model can only ground its answer in what the system gives it, so the quality of the retrieval layer matters enormously.
+
+## Chunk for meaning
+
+Good chunks preserve context. Instead of slicing every document into equal token windows, split around sections, headings, procedures, and concepts. Add metadata such as source, title, date, owner, and permission scope.
+
+## Retrieve, then rank
+
+Vector search is a strong first pass, but it is rarely the whole answer. A practical RAG stack often combines:
+
+- Keyword search for exact terms.
+- Vector search for semantic matches.
+- Metadata filters for access and freshness.
+- Reranking for final relevance.
+
+## Ground the response
+
+The generation step should know which sources were retrieved and why they matter. Keep the answer tied to evidence, cite sources when the interface needs it, and make uncertainty visible when the retrieved context is weak.
+
+```txt
+Question -> retrieve candidates -> rerank -> compose answer -> cite evidence
+```
+
+## Measure retrieval quality
+
+Track recall, precision, answer faithfulness, and user task success. A RAG system can look impressive while silently retrieving the wrong material, so evaluation should inspect both the final answer and the supporting context.
+
+## Keep it fresh
+
+For live products, document ingestion is part of the system. Monitor failed syncs, stale sources, deleted content, and permissions drift. The retrieval index should reflect the product's real knowledge surface.

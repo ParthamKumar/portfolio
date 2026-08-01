@@ -1,0 +1,36 @@
+---
+title: "Machine Learning Projects: A Practical Build Checklist"
+date: "2026-07-18"
+description: "A concise checklist for taking machine learning projects from notebooks to reliable applications."
+category: "Machine Learning"
+coverImage: "/Projects/BudgetBee/Thumbnail.png"
+---
+
+Machine learning projects succeed when the model is only one part of a disciplined workflow. Data quality, evaluation, deployment, and monitoring all decide whether the final system is useful.
+
+## Define the target clearly
+
+Start with the prediction target, success metric, and decision that the model will support. A clear target prevents the project from drifting into vague experimentation.
+
+## Build a baseline
+
+Before reaching for complex architectures, create a simple baseline. It gives you a reference point and often reveals whether the dataset contains enough signal.
+
+```python
+from sklearn.metrics import classification_report
+
+predictions = model.predict(X_test)
+print(classification_report(y_test, predictions))
+```
+
+## Watch the data
+
+Most model failures begin in the data. Check missing values, leakage, duplicated rows, class imbalance, time splits, and label quality. These checks are less glamorous than model tuning, but they usually create more value.
+
+## Package the model
+
+When a model moves into an app, define the input schema, preprocessing steps, version, and expected output format. The production path should match the training path as closely as possible.
+
+## Monitor after launch
+
+Model behavior changes when real users and fresh data arrive. Track prediction distributions, latency, failure rates, drift, and business outcomes. A shipped model is not finished; it is alive in the product.
