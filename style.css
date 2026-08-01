@@ -367,10 +367,11 @@ video {
 
 .hero-visual .responsive-spline-image {
   object-fit: contain;
-  padding: 1.5rem;
-  background:
-    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.08), transparent 18rem),
-    var(--bg-card);
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 spline-viewer {
@@ -1370,7 +1371,6 @@ spline-viewer {
   .hero-visual .responsive-spline-image {
     max-width: 360px;
     margin: 0 auto;
-    padding: 1rem;
   }
 
   .hero-buttons {

@@ -17,7 +17,7 @@ export default function Hero({ typedRole }) {
         <ResponsiveSpline
           className="hero-visual"
           scene="https://prod.spline.design/ABrQHVpts78MTmiH/scene.splinecode"
-          fallbackImage="/images/me.png"
+          fallbackImage="/New/img.png"
           alt="Partham Kumar portfolio portrait"
         />
       </div>

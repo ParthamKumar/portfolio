@@ -88,7 +88,7 @@ export const experiences = [
 ];
 
 export const skillGroups = [
-  ['01', 'Programming Languages', [['/images/js.png', 'JavaScript'], ['/images/python.png', 'Python'], ['/Logos/Java.png', 'Java'], ['/Logos/C.png', 'C'], ['/Logos/C++ (CPlusPlus).png', 'C++'], ['/images/mysql-database.png', 'SQL']]],
+  ['01', 'Programming Languages', [['/images/js.png', 'JavaScript'], ['/images/python.png', 'Python'], ['/Logos/Java.png', 'Java'], ['/Logos/C.png', 'C'], ['/Logos/cplusplus.png', 'C++'], ['/images/mysql-database.png', 'SQL']]],
   ['02', 'Frontend Techs', [['/Logos/HTML5.png', 'HTML5'], ['/images/physics.png', 'React'], ['/images/js.png', 'JavaScript'], ['/images/text.png', 'CSS'], ['/Logos/Tailwind CSS.png', 'Tailwind CSS'], ['/Logos/React Bootstrap.png', 'React Bootstrap'], ['/Logos/Vite.js.png', 'Vite.js'], ['/images/designer (1).png', 'UI/UX']]],
   ['03', 'Backend Techs', [['/images/node-js.png', 'Node.js'], ['/images/node-js.png', 'Express.js'], ['/images/coding (1).png', 'REST APIs'], ['/Logos/Java.png', 'Java Backend']]],
   ['04', 'Databases', [['/images/mysql-database.png', 'SQL'], ['/Logos/MongoDB.png', 'MongoDB']]],
